@@ -24,8 +24,8 @@ class Database {
   }
 
   public function prepare($query) {
-    if ( !($this->stmt = $this->conn->prepare($query)) )
-      die($this->stmt->error);
+    if ($this->stmt = $this->conn->prepare($query))
+      echo $this->stmt->error;
   }
 
   public function query($query) {
@@ -40,16 +40,16 @@ class Database {
       $args[] = &$params[$i];
     }
 
-    if( !call_user_func_array(array($this->stmt, 'bind_param'), $args) )
-      die($this->stmt->error);
+    if(!call_user_func_array(array($this->stmt, 'bind_param'), $args))
+      echo $this->stmt->error;
   }
 
   public function execute() {
-    if( !$this->stmt->execute() )
-      die($this->stmt->error);
+    if(!$this->stmt->execute())
+      echo $this->stmt->error;
   }
 
-  public function resultSet() {
+  public function result_set() {
     return $this->rs->fetch_all(MYSQLI_ASSOC);
   }
 
