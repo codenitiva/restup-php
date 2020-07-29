@@ -2,10 +2,10 @@
 
 require_once(__DIR__ . '/Base_model.php');
 
-class Role extends Model{
+class Product extends Model{
 
   public function __construct() {
-    parent::__construct("role");
+    parent::__construct("product");
   }
 
   public function get_all() {

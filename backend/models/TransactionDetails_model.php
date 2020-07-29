@@ -2,10 +2,10 @@
 
 require_once(__DIR__ . '/Base_model.php');
 
-class Role extends Model{
+class TransactionDetails extends Model{
 
   public function __construct() {
-    parent::__construct("role");
+    parent::__construct("transaction_details");
   }
 
   public function get_all() {
