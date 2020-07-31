@@ -1,26 +1,29 @@
-<?php
+<?php namespace Codenitiva\PHP\Middlewares;
 
-require_once(__DIR__ . '/../request/Request.php');
-require_once(__DIR__ . '/../response/Response.php');
+use Codenitiva\PHP\Requests\Request;
+use Codenitiva\PHP\Responses\Response;
 
 class Middleware {
 
-  private $response;
-  private $request;
-  private $closure;
+  const NEXT = 0;
+  const STOP = 1;
+
+  private $callback;
   private $next = false;
 
-  public function __construct(Request $request, Response $response, $closure) {
-    $this->request = $request;
-    $this->response = $response;
-    $this->closure = $closure;
-  }
-
-  public function run() {
-    $middleware_output = call_user_func_array($this->closure, array($this->request, $this->response, function () {
+  public function run(Request $request, Response $response) {
+    $middleware_output = call_user_func_array($this->callback, array($request, $response, function () {
       $this->next = true;
     }));
-    if (!$this->next) return $middleware_output;
-    return 'pass';
+    
+    if (!$this->next) {
+      echo $middleware_output;
+      return self::STOP;
+    }
+    return self::NEXT;
+  }
+
+  public function load($callback) {
+    $this->callback = $callback;
   }
 }
