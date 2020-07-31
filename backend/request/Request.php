@@ -1,11 +1,17 @@
-<?php
+<?php namespace Codenitiva\PHP\Requests;
 
-require_once(__DIR__ . '/./IRequest.php');
+use Codenitiva\PHP\Helpers\JSONHelper;
+use Codenitiva\PHP\Helpers\CookieHelper;
 
-class Request implements IRequest {
+class Request {
+
+  public $body = [];
+  public $cookies = [];
 
   public function __construct() {
     $this->init();
+    $this->body = $this->retrieve_body();
+    $this->cookies = $this->retrieve_cookie();
   }
 
   private function init() {
@@ -14,8 +20,12 @@ class Request implements IRequest {
     }
   }
 
-  public function get_body() {
-    if ($this->request_method == 'GET') return;
-    return json_decode(file_get_contents('php://input'));
+  public function retrieve_body() {
+    if ($this->request_method == 'GET') return [];
+    return JSONHelper::parse(file_get_contents('php://input'));
+  }
+
+  public function retrieve_cookie() {
+    return CookieHelper::assoc();
   }
 }

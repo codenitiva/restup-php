@@ -1,23 +1,20 @@
 <?php
 
-require_once(__DIR__ . '/db/Database.php');
-require_once(__DIR__ . '/./request/Request.php');
-require_once(__DIR__ . '/./router/Router.php');
+require(__DIR__ . '/requirements.php');
+
+use Codenitiva\PHP\Application;
+use Codenitiva\PHP\Routers\SampleRouter;
 
 $db = new Database();
 $db->open_connection();
 $db->close_connection();
 
-$router = new Router(new Request);
+// ? How to use
+// ? Step 1: create a new REST API Application instance
+$app = new Application;
 
-$router->get('/', function () {
-  return '<h1>Hello, Apollo</h1>';
-});
+// ? Step 2: add a sub router using add_sub_router method
+$app->add_sub_router(new SampleRouter);
 
-$router->get('/fetch', function () {
-  return json_encode(['status' => 200, 'message' => 'success']);
-});
-
-$router->post('/echo-self', function (Request $request) {
-  return json_encode(['status' => 200, 'data' => $request->get_body()]);
-});
+// ? Step 3: dont't forget to call the serve method to make sure the app is up and running.
+$app->serve();
