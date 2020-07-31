@@ -1,11 +1,15 @@
 <?php
 
-require_once(__DIR__ . '/Base_model.php');
+require_once(__DIR__ . '/BaseModel.php');
 
 class Customer extends Model{
 
   public function __construct() {
     parent::__construct("customer");
+  }
+
+  public function get_by_id($data) {
+    return parent::get_by_id($data);
   }
 
   public function get_all() {

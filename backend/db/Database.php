@@ -47,6 +47,8 @@ class Database {
   public function execute() {
     if(!$this->stmt->execute())
       echo $this->stmt->error;
+      
+    $this->rs = $this->stmt->get_result();
   }
 
   public function result_set() {
