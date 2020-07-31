@@ -1,9 +1,10 @@
-<?php
+<?php namespace Codenitiva\PHP\Responses;
 
-require_once(__DIR__ . '/./IResponse.php');
-require_once(__DIR__ . '/./ResponseContentType.php');
+use Codenitiva\PHP\Responses\ResponseContentType;
+use Codenitiva\PHP\Helpers\JSONHelper;
+use Codenitiva\PHP\Helpers\CookieHelper;
 
-class Response implements IResponse {
+class Response {
 
   private $response_data;
   private $type;
@@ -18,8 +19,13 @@ class Response implements IResponse {
     return $this;
   }
 
+  public function cookie($name, $value, $expiry, $secure, $http_only) {
+    CookieHelper::set($name, $value, $expiry, $secure, $http_only);
+    return $this;
+  }
+
   public function ok() {
-    return $this->build_response(200, $this->response_data, 'data');
+    return $this->build_response(200, $this->response_data);
   }
 
   public function bad_request() {
@@ -36,11 +42,12 @@ class Response implements IResponse {
     $this->type = $type;
   }
 
-  private function build_response($status, $data, $data_key = 'message') {
+  private function build_response($status, $data) {
+    $data_key = is_array($data) ? 'data' : "message";
     http_response_code($status);
     switch ($this->type) {
       case ResponseContentType::JSON:
-        return json_encode([
+        return JSONHelper::stringify([
           'status' => $status,
           $data_key => $data
         ]);
