@@ -17,4 +17,8 @@ class SampleController extends Controller {
   public function test(Request $req, Response $res) {
     return $res->json($req->query)->ok();
   }
+
+  public function test_protected(Request $req, Response $res) {
+    return $res->json('You have a cookie :)')->ok();
+  }
 }

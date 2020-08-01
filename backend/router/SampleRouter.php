@@ -1,7 +1,6 @@
 <?php namespace Codenitiva\PHP\Routers;
 
 use Codenitiva\PHP\Routers\SubRouter;
-use Codenitiva\PHP\Routers\Router;
 use Codenitiva\PHP\Requests\Request;
 use Codenitiva\PHP\Responses\Response;
 use Codenitiva\PHP\Middlewares\SampleMiddleware;
