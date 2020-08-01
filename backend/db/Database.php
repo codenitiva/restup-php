@@ -1,6 +1,6 @@
 <?php namespace Codenitiva\PHP\Database;
 
-use Codenitiva\PHP\Utils\TypeChecker;
+use Codenitiva\PHP\Helpers\TypeChecker;
 
 class Database {
 

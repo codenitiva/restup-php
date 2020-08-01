@@ -2,7 +2,7 @@
 
 use Codenitiva\PHP\Database\Database;
 use Codenitiva\PHP\Database\DBConstants;
-use Codenitiva\PHP\Utils\QueryBuilder;
+use Codenitiva\PHP\Helpers\QueryBuilder;
 
 class Model {
 

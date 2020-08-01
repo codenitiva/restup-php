@@ -1,4 +1,4 @@
-<?php namespace Codenitiva\PHP\Utils;
+<?php namespace Codenitiva\PHP\Helpers;
 
 class TypeChecker {
 
