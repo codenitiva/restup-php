@@ -1,4 +1,4 @@
-<?php
+<?php namespace Codenitiva\PHP\Utils;
 
 class QueryBuilder {
   public function insert_query_builder($table_name, $array_keys) {

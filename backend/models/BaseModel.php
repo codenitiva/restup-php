@@ -1,7 +1,8 @@
-<?php
+<?php namespace Codenitiva\PHP\Models;
 
-require_once(__DIR__ . '/../db/Database.php');
-require_once(__DIR__ . '/../utils/QueryBuilder.php');
+use Codenitiva\PHP\Database\Database;
+use Codenitiva\PHP\Database\DBConstants;
+use Codenitiva\PHP\Utils\QueryBuilder;
 
 class Model {
 
@@ -21,7 +22,7 @@ class Model {
   protected function get_by_id($data) {
     $query = "SELECT * FROM " . $this->table . " WHERE id=?";
     $this->db->prepare($query);
-    $this->db->bind('i', array_values($data));
+    $this->db->bind(array_values($data));
     $this->db->execute();
     return $this->db->result_set();
   }
@@ -31,25 +32,29 @@ class Model {
     return $this->db->result_set();
   }
 
-  protected function insert($types, $data) {
+  protected function insert($data) {
     $query = $this->query_builder->insert_query_builder($this->table, array_keys($data));
     $this->db->prepare($query);
-    $this->db->bind($types, array_values($data));
+    $this->db->bind(array_values($data));
     $this->db->execute();
   }
 
-  protected function update($types, $data){
+  protected function update($data){
     $query = $this->query_builder->update_query_builder($this->table, array_keys($data));
     $this->db->prepare($query);
-    $this->db->bind($types, array_values($data));
+    $this->db->bind(array_values($data));
     $this->db->execute();
   }
 
   protected function delete($data){
     $query = "DELETE FROM " . $this->table . " WHERE id=?";
     $this->db->prepare($query);
-    $this->db->bind('i', array_values($data));
+    $this->db->bind(array_values($data));
     $this->db->execute();
   }
 
+  protected function query($sql) {
+    $this->db->query($sql);
+    return $this->db->result_set();
+  } 
 }
