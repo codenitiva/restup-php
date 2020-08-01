@@ -1,6 +1,6 @@
-<?php
+<?php namespace Codenitiva\PHP\Database;
 
-require_once(__DIR__ . '/DBConstants.php');
+use Codenitiva\PHP\Utils\TypeChecker;
 
 class Database {
 
@@ -32,8 +32,9 @@ class Database {
     $this->rs = $this->conn->query($query);
   }
 
-  public function bind($type, $params) {
-    $args = array(&$type);
+  public function bind($params) {
+    $args = array(TypeChecker::get_type($params));
+    print_r($args);
     $count = count($params);
 
     for ($i=0; $i<$count; $i++) {
