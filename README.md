@@ -1,4 +1,4 @@
-# Apollo Jaya Stock Management System
+# RESTup PHP
 
 ```
 Copyright 2020 Codenitiva
