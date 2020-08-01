@@ -1,4 +1,4 @@
-<?php
+<?php namespace Codenitiva\PHP\Database;
 
 class DBConstants {
 
