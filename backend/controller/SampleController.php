@@ -13,4 +13,8 @@ class SampleController extends Controller {
   public function fetch(Request $req, Response $res) {
     return $res->json(['id' => 1, 'name' => 'Tommy Salim', 'age' => 20])->ok();
   }
+
+  public function test(Request $req, Response $res) {
+    return $res->json($req->query)->ok();
+  }
 }

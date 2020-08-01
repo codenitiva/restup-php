@@ -20,5 +20,7 @@ class SampleRouter extends SubRouter {
     $this->router->get('/', $controller->use('index'));
     
     $this->router->get('/fetch', new SampleMiddleware, $controller->use('fetch'));
+
+    $this->router->get('/test', $controller->use('test'));
   }
 }
