@@ -21,4 +21,5 @@ require_once(__DIR__ . '/config/AppConfig.php');
 // ? Custom classes can be a sub router, middleware, and controller;
 require_once(__DIR__ . '/controller/SampleController.php');
 require_once(__DIR__ . '/router/SampleRouter.php');
+require_once(__DIR__ . '/router/SampleProtectedRouter.php');
 require_once(__DIR__ . '/middleware/SampleMiddleware.php');
