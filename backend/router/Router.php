@@ -69,6 +69,7 @@ class Router {
   private function clean_route($route) {
     $clean_route = str_replace('/index.php', '', trim($route));
     $clean_route = str_replace(AppConfig::PATH_FROM_ROOT, '', $clean_route);
+    $clean_route = explode('?', $clean_route)[0];
     if ($clean_route == '' || substr($clean_route, -1) != '/') $clean_route .= '/';
     return $clean_route;
   }

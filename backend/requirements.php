@@ -12,6 +12,7 @@ require_once(__DIR__ . '/router/SubRouter.php');
 require_once(__DIR__ . '/middleware/Middleware.php');
 require_once(__DIR__ . '/helper/JSONHelper.php');
 require_once(__DIR__ . '/helper/CookieHelper.php');
+require_once(__DIR__ . '/helper/URLQueryParamsHelper.php');
 require_once(__DIR__ . '/exception/UnknownRouterMethodException.php');
 require_once(__DIR__ . '/exception/UnknownRouteException.php');
 require_once(__DIR__ . '/exception/IllegalPrefixPathException.php');
