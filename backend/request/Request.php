@@ -9,12 +9,14 @@ class Request {
   public $body = [];
   public $cookies = [];
   public $query = [];
+  public $headers = [];
 
   public function __construct() {
     $this->init();
     $this->body = $this->retrieve_body();
     $this->cookies = $this->retrieve_cookie();
     $this->query = $this->retrieve_query();
+    $this->headers = $this->retrieve_headers();
   }
 
   private function init() {
@@ -34,5 +36,9 @@ class Request {
 
   private function retrieve_cookie() {
     return CookieHelper::assoc();
+  }
+
+  private function retrieve_headers() {
+    return getallheaders();
   }
 }
